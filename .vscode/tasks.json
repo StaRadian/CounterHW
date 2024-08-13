@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build all",
+			"group": "build",
+			"type": "shell",
+			"command": "mingw32-make",
+			"args": ["all"]
+		},
+		{
+			"label": "Build clean",	//not Working..
+			"group": "build",
+			"type": "shell",
+			"command": "mingw32-make",
+			"args": ["clean"]
+		},
+		{
+			"label": "Flash",
+			"group": "build",
+			"type": "shell",
+			"command": "st-flash --reset --freq=1000 write build/CounterG431.bin 0x08000000"
+		},
+		{
+			"label": "Flash Erase",
+			"group": "build",
+			"type": "shell",
+			"command": "st-flash --reset --freq=1000 erase"
+		},
+		{
+			"label": "Build&Flash",
+			"group": "build",
+			"type": "shell",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Build all",
+				"Flash"
+			]
+		}
+	]
+}
